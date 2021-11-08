@@ -15,10 +15,10 @@ function onKeydown(e:KeyboardEvent){
 }
 window.addEventListener("keydown",onKeydown)
 
-let fleet= new Fleet(20,20,5,10)
+let fleet= new Fleet(5,5,5,10,1)
 
-alert("hello")
+
 
 
 let ship=new Ship(300)
-setInterval(function(){fleet.move(1)},50)
+setInterval(function(){fleet.move()},50)

@@ -20,22 +20,23 @@ class Invader {
         this.col = col;
         this.element = document.createElement("div");
         this.element.classList.add("invader");
-        document.body.appendChild(this.element);
+        document.getElementById("space").appendChild(this.element);
         this.update(fleet);
     }
     update(fleet) {
-        this.element.style.left = fleet.x + this.col * 15 + "px";
-        this.element.style.top = fleet.y + this.row * 15 + "px";
+        this.element.style.left = fleet.x + this.col * 4 + "%";
+        this.element.style.top = fleet.y + this.row * 4 + "%";
     }
 }
 class Fleet {
-    constructor(x, y, rows, cols) {
+    constructor(x, y, rows, cols, dx) {
         this.invaders = [];
         this.x = x;
         this.y = y;
         this.rows = rows;
         this.cols = cols;
         this.invaders = [];
+        this.dx = dx;
         for (let r = 0; r < this.rows; r++) {
             this.invaders.push([]);
             for (let c = 0; c < this.cols; c++) {
@@ -43,9 +44,18 @@ class Fleet {
             }
         }
     }
-    move(dx) {
-        this.x += dx;
+    move() {
+        this.x += this.dx;
         this.update();
+        // if(this.x>100){
+        //     this.dx=-this.dx
+        // }
+        // else if(this.x<0){
+        //     this.dx=-this.dx
+        // }
+        if (this.x > 100 || this.x < 0) {
+            this.dx = -this.dx;
+        }
     }
     update() {
         for (let r = 0; r < this.rows; r++) {

@@ -1,17 +1,26 @@
 body{
-    height:100vh
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#space{
+    width:50vw;
+    height:90vh;
+    position: relative;
+    background-color: black;
 }
 .ship{
     width:100px;
-    height:100px;
+    height:50px;
     background-color: blue;
     position:absolute;
-    top:80%;
+    top:90%;
 }
 
 .invader{
-    width:10px;
-    height:10px;
+    width:2%;
+    height:2%;
     background-color: red;
     position:absolute;
 }
