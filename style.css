@@ -1,0 +1,17 @@
+body{
+    height:100vh
+}
+.ship{
+    width:100px;
+    height:100px;
+    background-color: blue;
+    position:absolute;
+    top:80%;
+}
+
+.invader{
+    width:10px;
+    height:10px;
+    background-color: red;
+    position:absolute;
+}
