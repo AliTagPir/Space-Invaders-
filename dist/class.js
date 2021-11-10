@@ -11,11 +11,15 @@ class Ship {
         this.updatePosition();
     }
     updatePosition() {
-        document.getElementById("ship").style.left = this.x + "px";
+        document.getElementById("ship").style.left = this.x + "%";
+    }
+    shoot() {
+        new Bullet(this.x + 5, 90, 0, -1);
     }
 }
 class Invader {
     constructor(fleet, row, col) {
+        this.alive = true;
         this.row = row;
         this.col = col;
         this.element = document.createElement("div");
@@ -24,8 +28,12 @@ class Invader {
         this.update(fleet);
     }
     update(fleet) {
-        this.element.style.left = fleet.x + this.col * 4 + "%";
-        this.element.style.top = fleet.y + this.row * 4 + "%";
+        //need to check alive property and hide dead invaders
+        this.element.style.left = fleet.x + this.col * 7 + "%";
+        this.element.style.top = fleet.y + this.row * 7 + "%";
+    }
+    kill() {
+        this.alive = false;
     }
 }
 class Fleet {
@@ -53,8 +61,9 @@ class Fleet {
         // else if(this.x<0){
         //     this.dx=-this.dx
         // }
-        if (this.x > 100 || this.x < 0) {
+        if (this.x >= 32 || this.x <= 0) {
             this.dx = -this.dx;
+            this.y += 7;
         }
     }
     update() {
@@ -66,5 +75,33 @@ class Fleet {
                 //pass to each invader the postion of the fleet
             }
         }
+    }
+}
+class Bullet {
+    constructor(x, y, dx, dy) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.element = document.createElement("div");
+        this.element.classList.add("bullet");
+        document.getElementById("space").appendChild(this.element);
+        this.update();
+        bullets.push(this);
+    }
+    update() {
+        this.element.style.left = this.x + "%";
+        this.element.style.top = this.y + "%";
+    }
+    //add a move method to the bullet class
+    //in the method - move (this) bullet by dx, dy
+    move() {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.y < 0) {
+            document.getElementById("space").removeChild(this.element);
+            return true;
+        }
+        return false;
     }
 }
