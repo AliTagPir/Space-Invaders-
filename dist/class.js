@@ -14,7 +14,7 @@ class Ship {
         document.getElementById("ship").style.left = this.x + "%";
     }
     shoot() {
-        new Bullet(this.x + 2, 90, 0, -2);
+        new Bullet(this.x + 2.5, 88, 0, -2);
     }
 }
 class Invader {
